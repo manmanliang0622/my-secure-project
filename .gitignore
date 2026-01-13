@@ -1,0 +1,12 @@
+# 忽略相依套件資料夾
+node_modules/
+
+# 忽略敏感資訊環境變數檔
+.env
+
+# 忽略作業系統產生的雜物
+.DS_Store
+Thumbs.db
+
+# 忽略執行時產生的日誌
+npm-debug.log*
