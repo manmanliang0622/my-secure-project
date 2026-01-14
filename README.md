@@ -17,26 +17,31 @@
     * **運維層**：容器化封裝 (Docker)，確保環境隔離與安全一致性。
 
 ---
-專案架構：
+## 📂 專案架構 (Project Structure)
+
+本專案採用前後端分離架構，並透過 Docker 實現環境一致性。以下為主要目錄說明：
+
+```text
 project-root/
-├── backend/ # 後端目錄
-│ ├── src/
-│ │ ├── controllers/ # 處理 HTTP 請求與回應
-│ │ ├── services/ # 核心業務邏輯
-│ │ ├── models/ # 資料庫 Schema 定義
-│ │ ├── middlewares/ # 安全過濾器 (Auth, Validation)
-│ │ ├── routes/ # API 路由定義
-│ │ └── app.js # 入口檔案
-│ ├── .env.example # 環境變數範本 (重要！)
-│ ├── Dockerfile # (加分項)
-│ └── package.json
-├── frontend/ # 前端目錄
-│ ├── src/
-│ │ ├── components/
-│ │ └── hooks/
-│ └── …
-├── docker-compose.yml # (加分項) 一鍵啟動前後端與資料庫
-└── README.md # 專案文件 (必備)
+├── 📁 backend/               # 後端目錄 (Node.js/Express)
+│   ├── 📁 src/
+│   │   ├── 📁 controllers/   # 處理 HTTP 請求與回應 (控制層)
+│   │   ├── 📁 services/      # 核心業務邏輯 (服務層)
+│   │   ├── 📁 models/        # 資料庫 Schema 定義 (資料層)
+│   │   ├── 📁 middlewares/   # 安全過濾器 (Auth, Validation, Helmet)
+│   │   ├── 📁 routes/        # API 路由定義
+│   │   └── 📄 app.js          # 應用程式入口檔案
+│   ├── 📄 .env.example       # 環境變數範本 (重要！請勿直接上傳 .env)
+│   ├── 📄 Dockerfile         # 後端容器化配置
+│   └── 📄 package.json       # 專案依賴管理
+├── 📁 frontend/              # 前端目錄 (React/Vue/Next.js)
+│   ├── 📁 src/
+│   │   ├── 📁 components/    # 共用 UI 組件
+│   │   └── 📁 hooks/         # 自定義 React Hooks / 邏輯封裝
+│   └── 📄 ...                # 其他前端配置
+├── 📄 docker-compose.yml     # 一鍵啟動前後端與資料庫服務
+└── 📄 README.md              # 專案說明文件 (目前正在閱讀)
+
 
 ## 🛡️ 安全防禦深度解析
 
