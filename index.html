@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' http://localhost:3000;">
+    <title>安全會員管理系統 - 粉紅限定版</title>
+    <style>
+        :root {
+            --primary-pink: #ffafbd;
+            --secondary-pink: #ffc3a0;
+            --dark-pink: #e91e63;
+            --soft-white: #fff5f7;
+            --error-color: #ff4d4d;
+            --success-color: #2ecc71;
+        }
+
+        body {
+            font-family: 'Segoe UI', "Microsoft JhengHei", sans-serif;
+            /* 粉紅漸層背景 */
+            background: linear-gradient(135deg, var(--primary-pink) 0%, var(--secondary-pink) 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9); /* 半透明白色卡片 */
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(233, 30, 99, 0.2);
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            border: 2px solid white;
+        }
+
+        h2 { 
+            color: var(--dark-pink); 
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .input-group { margin-bottom: 1.2rem; text-align: left; }
+
+        label { 
+            display: block; 
+            margin-bottom: 0.5rem; 
+            color: #884d5e; 
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ffe0e6;
+            border-radius: 12px;
+            box-sizing: border-box;
+            background-color: var(--soft-white);
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--dark-pink);
+            background-color: #fff;
+            box-shadow: 0 0 8px rgba(233, 30, 99, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(to right, #ff416c, #ff4b2b); /* 粉紅亮色按鈕 */
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.3);
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+        }
+
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 65, 108, 0.4);
+        }
+
+        button:active { transform: translateY(0); }
+
+        #message {
+            margin-top: 1.5rem;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            min-height: 20px;
+            font-weight: 500;
+        }
+
+        /* 錯誤訊息風格 */
+        .error { 
+            background: #fff0f3; 
+            color: var(--error-color); 
+            border: 1px solid #ffccd5; 
+        }
+        
+        /* 成功訊息風格 */
+        .success { 
+            background: #f0fff4; 
+            color: var(--success-color); 
+            border: 1px solid #c6f6d5; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>💖 安全註冊系統</h2>
+        <div class="input-group">
+            <label for="email">電子郵件信箱</label>
+            <input type="email" id="email" placeholder="hello@pink.com">
+        </div>
+        <div class="input-group">
+            <label for="password">設定登入密碼</label>
+            <input type="password" id="password" placeholder="至少 8 位字元">
+        </div>
+        <button onclick="register()">開啟安全旅程</button>
+        
+        <div id="message"></div>
+    </div>
+
+    <script>
+        async function register() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const messageBox = document.getElementById('message');
+            
+            messageBox.textContent = "";
+            messageBox.className = "";
+
+            // --- 前端安全設計 1：輸入驗證 ---
+            if (!email || !password) {
+                showMsg("請輸入帳號與密碼唷！", "error");
+                return;
+            }
+            if (password.length < 8) {
+                showMsg("🌸 安全提醒：密碼太短了，要 8 位以上唷！", "error");
+                return;
+            }
+
+            try {
+                showMsg("正在與粉紅伺服器連線中...", "");
+                const response = await fetch('http://localhost:3000/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // --- 前端安全設計 2：防止 XSS ---
+                    showMsg("✨ 註冊成功！歡迎加入：" + email, "success");
+                } else {
+                    showMsg("💔 " + (data.error || "註冊失敗"), "error");
+                }
+            } catch (error) {
+                showMsg("😢 伺服器還在睡覺，請檢查 Docker/XAMPP", "error");
+            }
+        }
+
+        function showMsg(text, type) {
+            const messageBox = document.getElementById('message');
+            messageBox.textContent = text; 
+            messageBox.className = type;
+        }
+    </script>
+</body>
+</html>
