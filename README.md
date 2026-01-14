@@ -17,6 +17,26 @@
     * **運維層**：容器化封裝 (Docker)，確保環境隔離與安全一致性。
 
 ---
+專案架構：
+project-root/
+├── backend/ # 後端目錄
+│ ├── src/
+│ │ ├── controllers/ # 處理 HTTP 請求與回應
+│ │ ├── services/ # 核心業務邏輯
+│ │ ├── models/ # 資料庫 Schema 定義
+│ │ ├── middlewares/ # 安全過濾器 (Auth, Validation)
+│ │ ├── routes/ # API 路由定義
+│ │ └── app.js # 入口檔案
+│ ├── .env.example # 環境變數範本 (重要！)
+│ ├── Dockerfile # (加分項)
+│ └── package.json
+├── frontend/ # 前端目錄
+│ ├── src/
+│ │ ├── components/
+│ │ └── hooks/
+│ └── …
+├── docker-compose.yml # (加分項) 一鍵啟動前後端與資料庫
+└── README.md # 專案文件 (必備)
 
 ## 🛡️ 安全防禦深度解析
 
