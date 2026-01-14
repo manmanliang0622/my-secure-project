@@ -3,6 +3,7 @@
 [![Security Scan: CodeQL](https://github.com/manmanliang0622/my-secure-project/actions/workflows/codeql.yml/badge.svg)](https://github.com/manmanliang0622/my-secure-project/actions)
 ![Docker Supported](https://img.shields.io/badge/Docker-Supported-blue?logo=docker)
 ![Node Version](https://img.shields.io/badge/Node.js-20+-green?logo=node.js)
+![Security Scan: CodeQL](https://github.com/manmanliang0622/my-secure-project/actions/workflows/codeql.yml/badge.svg)
 
 本專案是一個具備多層次防禦架構的 Web 會員系統。開發核心遵循 **OWASP Top 10** 安全規範，旨在展示如何從前端、後端到資料庫構建一個抗攻擊的現代化應用。
 
@@ -55,3 +56,8 @@
 1. **複製本專案**：
    ```bash
    git clone [https://github.com/manmanliang0622/my-secure-project.git](https://github.com/manmanliang0622/my-secure-project.git)
+### 2. 持續整合與部署 (CI/CD & DevOps)
+* **Dockerfile 快速部署**：提供標準化容器設定檔，確保開發與生產環境高度一致。
+* **GitHub Actions (SAST) - 已通過掃描**：
+    * 配置 **CodeQL 靜態原始碼分析**。
+    * **現況**：目前所有掃描任務均為 **Success (綠色勾勾)**，確認後端邏輯無常見資安漏洞 (如 SQLi, XSS, 不安全密碼處理)。
