@@ -35,11 +35,7 @@ project-root/
 │   ├── 📄 Dockerfile         # 後端容器化配置
 │   └── 📄 package.json       # 專案依賴管理
 ├── 📁 frontend/              # 前端目錄 (React/Vue/Next.js)
-│   ├── 📁 src/
-│   │   ├── 📁 components/    # 共用 UI 組件
-│   │   └── 📁 hooks/         # 自定義 React Hooks / 邏輯封裝
-│   └── 📄 ...                # 其他前端配置
-├── 📄 docker-compose.yml     # 一鍵啟動前後端與資料庫服務
+│   ├── 📄 db.js
 └── 📄 README.md              # 專案說明文件 (目前正在閱讀)
 
 
