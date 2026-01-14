@@ -3,7 +3,6 @@
 [![Security Scan: CodeQL](https://github.com/manmanliang0622/my-secure-project/actions/workflows/codeql.yml/badge.svg)](https://github.com/manmanliang0622/my-secure-project/actions)
 ![Docker Supported](https://img.shields.io/badge/Docker-Supported-blue?logo=docker)
 ![Node Version](https://img.shields.io/badge/Node.js-20+-green?logo=node.js)
-![Security Scan: CodeQL](https://github.com/manmanliang0622/my-secure-project/actions/workflows/codeql.yml/badge.svg)
 
 本專案是一個具備多層次防禦架構的 Web 會員系統。開發核心遵循 **OWASP Top 10** 安全規範，旨在展示如何從前端、後端到資料庫構建一個抗攻擊的現代化應用。
 
